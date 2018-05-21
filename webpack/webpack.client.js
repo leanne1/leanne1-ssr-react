@@ -6,7 +6,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const config = {
   mode: isProduction ? 'production' : 'development',
-  entry: './src/client/index.js',
+  entry: ['babel-polyfill', './src/client/index.js'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, '../build/public'),

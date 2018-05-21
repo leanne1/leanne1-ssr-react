@@ -1,14 +1,18 @@
 /* eslint-disable function-paren-newline */
-import React from 'react';
+import React, { Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { renderRoutes } from 'react-router-config';
 import Routes from '../../common/routes';
 
-export const renderer = (path) => {
+export const renderer = (path, store) => {
   const content = renderToString(
-    <StaticRouter location={path} context={{}}>
-      <Routes />
-    </StaticRouter>,
+    <Provider store={store}>
+      <StaticRouter location={path} context={{}}>
+        <Fragment>{renderRoutes(Routes)}</Fragment>
+      </StaticRouter>
+    </Provider>,
   );
   return `
     <html>

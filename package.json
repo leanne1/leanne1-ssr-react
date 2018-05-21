@@ -1,0 +1,83 @@
+{
+  "name": "leanne1-react-ssr",
+  "version": "0.0.0",
+  "description": "SSR React and Redux application with Express",
+  "main": "src/server/index.js",
+  "config": {
+    "env": {
+      "dev": "development",
+      "test": "test"
+    }
+  },
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:build-server": "webpack --config webpack/webpack.server.js --watch",
+    "dev:build-client": "webpack --config webpack/webpack.client.js --watch",
+    "dev:server": "cross-env NODE_ENV=$npm_package_config_env_dev DEBUG=app:* nodemon --watch build --exec \"node build/bundle\"",
+    "mocha": "cross-env PORT=3001 NODE_ENV=$npm_package_config_env_test NODE_TLS_REJECT_UNAUTHORIZED=0 APP_ENV=$npm_package_config_env_dev BABEL_ENV=test mocha --require babel-register config/mocha/setup.test.js --opts config/mocha/mocha.server.opts src/**/*.test.js",
+    "test": "npm run mocha",
+    "tdd": "npm run mocha -- -watch",
+    "test:coverage": "nyc npm run mocha && nyc report --reporter=lcov",
+    "lint": "eslint .",
+    "nsp": "nsp check"
+  },
+  "pre-push": [
+    "lint",
+    "nsp",
+    "test:coverage"
+  ],
+  "keywords": [],
+  "author": "leanne1",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "compression": "^1.7.2",
+    "express": "^4.16.3",
+    "express-http-proxy": "^1.2.0",
+    "lodash": "^4.17.10",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-helmet": "^5.2.0",
+    "react-redux": "^5.0.7",
+    "react-router-config": "^1.0.0-beta.4",
+    "react-router-dom": "^4.2.2",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.2.0",
+    "serialize-javascript": "^1.5.0",
+    "webpack-merge": "^4.1.2",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "colors": "^1.2.5",
+    "concurrently": "^3.5.1",
+    "cross-env": "^5.1.4",
+    "debug": "^3.1.0",
+    "dirty-chai": "^2.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "mocha": "^5.1.1",
+    "nodemon": "^1.17.3",
+    "npm-run-all": "^4.1.3",
+    "nsp": "^3.2.1",
+    "nyc": "^11.8.0",
+    "pre-push": "^0.1.1",
+    "sinon": "^5.0.7",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4"
+  }
+}

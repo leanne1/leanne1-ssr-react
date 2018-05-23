@@ -1,5 +1,5 @@
 import Home from '../../client/containers/Home';
-import Users, { loadData } from '../../client/containers/Users';
+import Users, { loadData as loadUsersData } from '../../client/containers/Users';
 
 export default [
   {
@@ -10,6 +10,6 @@ export default [
   {
     path: '/users',
     component: Users,
-    loadData,
+    loadData: loadUsersData,
   },
 ];

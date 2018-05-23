@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../../common/actions';
+import { fetchUsers } from '../../../client/actions';
 
 export class User extends Component {
   static propTypes = {
@@ -27,7 +27,7 @@ export class User extends Component {
 }
 
 // For SSR
-export const loadData = store => store.dispatch(fetchUsers());
+export const loadData = ({ dispatch }) => dispatch(fetchUsers());
 
 const mapStateToProps = state => ({
   users: state.users,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../../../client/actions';
 
-export class User extends Component {
+class Users extends Component {
   static propTypes = {
     users: PropTypes.arrayOf(PropTypes.shape()),
     fetchUsers: PropTypes.func.isRequired,
@@ -19,7 +19,7 @@ export class User extends Component {
   render() {
     return (
       <div>
-        <div>List of users:</div>
+        <h1>List of users:</h1>
         <ul>{this.renderUsers()}</ul>
       </div>
     );
@@ -29,8 +29,6 @@ export class User extends Component {
 // For SSR
 export const loadData = ({ dispatch }) => dispatch(fetchUsers());
 
-const mapStateToProps = state => ({
-  users: state.users,
-});
+const mapStateToProps = ({ users }) => ({ users });
 
-export default connect(mapStateToProps, { fetchUsers })(User);
+export default connect(mapStateToProps, { fetchUsers })(Users);

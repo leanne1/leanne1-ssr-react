@@ -15,7 +15,7 @@ const Header = ({ isUserAuthenticated }) => {
         </Link>
         <ul className="right">
           <li><Link to="/users" href="null">Users</Link></li>
-          <li><Link to="/admin" href="null">Admin</Link></li>
+          <li><Link to="/admins" href="null">Admins</Link></li>
           <li>{authButton}</li>
         </ul>
       </nav>
